@@ -252,7 +252,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
                     strcat(labelstr, ", ");
                     strcat(labelstr, names[j]);
                 }
-                printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
+                printf("%s: %.0f%%", names[j], dets[i].prob[j]*100);
             }
         }
         if(class >= 0){
@@ -285,6 +285,10 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             int top   = (b.y-b.h/2.)*im.h;
             int bot   = (b.y+b.h/2.)*im.h;
 
+            printf(" - ");
+            printf("box: %d,%d %d,%d", left, top, right, bot);
+            printf(" - ");
+            printf("size: %d\n", (right-left)*(bot-top));
             if(left < 0) left = 0;
             if(right > im.w-1) right = im.w-1;
             if(top < 0) top = 0;
